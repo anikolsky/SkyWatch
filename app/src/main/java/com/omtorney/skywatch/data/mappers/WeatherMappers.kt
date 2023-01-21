@@ -1,7 +1,9 @@
 package com.omtorney.skywatch.data.mappers
 
 import com.omtorney.skywatch.data.remote.WeatherDataDto
+import com.omtorney.skywatch.data.remote.WeatherDto
 import com.omtorney.skywatch.domain.weather.WeatherData
+import com.omtorney.skywatch.domain.weather.WeatherInfo
 import com.omtorney.skywatch.domain.weather.WeatherType
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -10,6 +12,8 @@ private data class IndexedWeatherData(
     val index: Int,
     val data: WeatherData
 )
+
+// TODO extend forecast for the whole week
 
 fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>> {
     return time.mapIndexed { index, time ->
@@ -36,4 +40,17 @@ fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>> {
             it.data
         }
     }
+}
+
+fun WeatherDto.toWeatherInfo(): WeatherInfo {
+    val weatherDataMap = weatherData.toWeatherDataMap()
+    val now = LocalDateTime.now()
+    val currentWeatherData = weatherDataMap[0]?.find {
+        val hour = if (now.minute < 30) now.hour else now.hour + 1
+        it.time.hour == hour
+    }
+    return WeatherInfo(
+        weatherDataPerDay = weatherDataMap,
+        currentWeatherData = currentWeatherData
+    )
 }
