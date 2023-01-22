@@ -33,6 +33,7 @@ fun WeatherCard(
             modifier = modifier.padding(16.dp)
         ) {
             Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
