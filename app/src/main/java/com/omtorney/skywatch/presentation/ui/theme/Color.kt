@@ -1,4 +1,4 @@
-package com.omtorney.skywatch.ui.theme
+package com.omtorney.skywatch.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

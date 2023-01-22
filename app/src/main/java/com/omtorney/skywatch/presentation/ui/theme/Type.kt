@@ -1,4 +1,4 @@
-package com.omtorney.skywatch.presentation.theme
+package com.omtorney.skywatch.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

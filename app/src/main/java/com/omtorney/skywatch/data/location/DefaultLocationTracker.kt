@@ -30,7 +30,7 @@ class DefaultLocationTracker @Inject constructor(
         val locationManager = application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ||
                 locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        if (!hasAccessCoarseLocationPermission || !hasAccessFineLocationPermission || isGpsEnabled) {
+        if (!hasAccessCoarseLocationPermission || !hasAccessFineLocationPermission || !isGpsEnabled) {
             return null
         }
 
